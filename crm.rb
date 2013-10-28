@@ -36,7 +36,8 @@ class CRM
     when 6
       exit_application
     else
-      puts "Try again. "
+      puts "Entry not recognized. Please try again..."
+      sleep 2
       main_menu
     end
   end
@@ -67,44 +68,48 @@ class CRM
       puts "Type 'yes' to confirm, or 'no' to cancel"
       fname_modify = gets.chomp
         if fname_modify.downcase == "yes"
-          puts "OK. Modifying first name, now."
+          puts "Modify first name, now: "
+          gets.chomp
         else
-          puts "Cancelling edit first name. Returning to modify existing contact..."
+          puts "Cancelling edit first name. Returning to main menu..."
           sleep 3
-          modify_existing_contact
+          main_menu
         end
     when 2
       puts "You selected last name."
       puts "Type 'yes' to confirm, or 'no' to cancel"
       lname_modify = gets.chomp
         if lname_modify.downcase == "yes"
-          puts "OK. Modifying last name, now."
+          puts "Modify last name, now: "
+          gets.chomp
         else
-          puts "Cancelling edit last name. Returning to modify existing contact..."
+          puts "Cancelling edit last name. Returning to main menu..."
           sleep 3
-          modify_existing_contact
+          main_menu
         end
     when 3
       puts "You selected email address"
       puts "Type 'yes' to confirm, or 'no' to cancel"
       email_modify = gets.chomp
       if email_modify.downcase == "yes"
-          puts "OK. Modifying email address, now."
+          puts "Modify email address, now: "
+          gets.chomp
         else
-          puts "Cancelling edit email address. Returning to modify existing contact..."
+          puts "Cancelling edit email address. Returning to main menu..."
           sleep 3
-          modify_existing_contact
+          main_menu
         end
     when 4
       puts "You selected notes"
       puts "Type 'yes' to confirm or 'no' to cancel"
       notes_modify = gets.chomp
       if notes_modify.downcase == "yes"
-          puts "OK. Modifying notes, now."
+          puts "Modifying notes, now: "
+          gets.chomp
         else
-          puts "Cancelling edit notes. Returning to modify existing contact..."
+          puts "Cancelling edit notes. Returning to main menu..."
           sleep 3
-          modify_existing_contact
+          main_menu
         end
     when 5
       main_menu
