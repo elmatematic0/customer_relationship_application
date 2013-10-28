@@ -1,6 +1,6 @@
 class Contact
 
-attr_accessor :fname, :lname, :email, :note, :id, :rolodex_contact
+attr_accessor :fname, :lname, :email, :note, :id, :rolodex_contacts
 
   def initialize(fname, lname, email, note)
     @fname = fname

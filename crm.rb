@@ -6,7 +6,7 @@ class CRM
     
 
   def initialize(name)
-    @name = name
+    self.name = name
   end
 
   def main_menu
@@ -18,7 +18,7 @@ class CRM
     puts "[6] Exit"
     puts "Enter a number: "
     user_selected = gets.chomp.to_i
-    call_option(user_selected)
+    call_option(user_selected) 
   end
 
   def call_option(user_selected)
@@ -47,11 +47,20 @@ class CRM
   	fname = gets.chomp
   	puts "Please enter last name: "
   	lname = gets.chomp
-  	puts "Please enter your email: "
+  	puts "Please enter email address: "
   	email = gets.chomp
   	puts "Please enter a note: "
   	note = gets.chomp	
     contact = Contact.new(fname, lname, email, note)
+    Rolodex.add_contact(contact)
+    puts Rolodex.rolodex_contacts
+    puts "Would you like add another contact? (Y/N)"
+    another_contact = gets.chomp
+    if another_contact.downcase == "y" 
+      add_new_contact
+    else
+    main_menu 
+    end
   end
 
   def modify_existing_contact
@@ -130,32 +139,72 @@ class CRM
 
   def delete_contact
     puts "ready to delete a contact?"
+    Rolodex.delete_contact
   end
 
   def display_all_contacts
     puts "ready to display all contacts?"
+    Rolodex.rolodex_contacts.each {|contact| puts "ID: #{contact.id}, First Name: #{contact.fname}, Last Name: #{contact.lname}, Email: #{contact.email}, Notes: #{contact.note}"}
+    main_menu  
   end
 
   def display_attribute
-    puts "ready to display an attribute?"
+    puts "Which attribute would you like to see?"
+    puts "[1] ID"
+    puts "[2] First name"
+    puts "[3] Last name"
+    puts "[4] Email address"
+    puts "[5] Notes"
+    puts "---------------------"
+    puts "[9] Return to main menu"
+    attribute_selection = gets.chomp.to_i
+    case attribute_selection
+    when 1
+      Rolodex.rolodex_contacts.each {|contact| puts contact.id}
+      sleep 2
+      display_attribute
+    when 2
+      Rolodex.rolodex_contacts.each {|contact| puts contact.fname}
+      sleep 2
+      display_attribute
+    when 3
+      Rolodex.rolodex_contacts.each {|contact| puts contact.lname}
+      sleep 2
+      display_attribute
+    when 4
+      Rolodex.rolodex_contacts.each {|contact| puts contact.email}
+      sleep 2
+      display_attribute
+    when 5
+      Rolodex.rolodex_contacts.each {|contact| puts contact.note}
+      sleep 2
+      display_attribute
+    when 9
+      main_menu
+    else
+      puts "Entry not recognized. Try again..."
+      sleep 2
+      display_attribute
+    end
   end
 
   def exit_application
-    puts "ready to exit the application?"
+    exit
   end
 
 end
 
 my_crm = CRM.new("My CRM")
+
 my_crm.main_menu
 
 
 
-#contact = Contact.new(fname,lname,email,note)
+
 # puts contact.fname
 
 #puts Rolodex.add_contact(contact)
-# puts Rolodex.rolodex_contact
+# puts Rolodex.rolodex_contacts
 #puts contact.email
 #puts Rolodex.add_contact(contact)
 

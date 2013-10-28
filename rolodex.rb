@@ -1,20 +1,23 @@
 class Rolodex
-@rolodex_contact = []
-@id = 1000
+	@rolodex_contacts = []
+	@id = 1000
 
-	def self.rolodex_contact
-		@rolodex_contact
-	end
+		def self.rolodex_contacts
+			@rolodex_contacts
+		end
 
-	def self.get_current_id
-		@id
-	end
+		def self.id
+			@id
+		end
 
-	def self.add_contact(contact)
-		contact.id = @id
-		@rolodex_contact << contact
-		@id += 1
-	end
+		def self.add_contact(contact)
+			contact.id = @id
+			@rolodex_contacts << contact
+			puts id
+			@id += 1
+		end
+
+
 end
 
 
