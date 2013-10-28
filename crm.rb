@@ -64,82 +64,17 @@ class CRM
   end
 
   def modify_existing_contact
-    puts "Which attribute would you like to modify?"
-    puts "[1] First Name?"
-    puts "[2] Last Name?"
-    puts "[3] Email Address"
-    puts "[4] Notes?"
-    puts "[5] To exit modify contacts and return to the main menu"
-    user_selected_modified = gets.chomp.to_i 
-    case user_selected_modified
-    when 1
-      puts "You selected first name."
-      puts "Type 'yes' to confirm, or 'no' to cancel"
-      fname_modify = gets.chomp
-        if fname_modify.downcase == "yes"
-          puts "Modify first name, now: "
-          gets.chomp
-        else
-          puts "Cancelling edit first name. Returning to main menu..."
-          sleep 3
-          main_menu
-        end
-    when 2
-      puts "You selected last name."
-      puts "Type 'yes' to confirm, or 'no' to cancel"
-      lname_modify = gets.chomp
-        if lname_modify.downcase == "yes"
-          puts "Modify last name, now: "
-          gets.chomp
-        else
-          puts "Cancelling edit last name. Returning to main menu..."
-          sleep 3
-          main_menu
-        end
-    when 3
-      puts "You selected email address"
-      puts "Type 'yes' to confirm, or 'no' to cancel"
-      email_modify = gets.chomp
-      if email_modify.downcase == "yes"
-          puts "Modify email address, now: "
-          gets.chomp
-        else
-          puts "Cancelling edit email address. Returning to main menu..."
-          sleep 3
-          main_menu
-        end
-    when 4
-      puts "You selected notes"
-      puts "Type 'yes' to confirm or 'no' to cancel"
-      notes_modify = gets.chomp
-      if notes_modify.downcase == "yes"
-          puts "Modifying notes, now: "
-          gets.chomp
-        else
-          puts "Cancelling edit notes. Returning to main menu..."
-          sleep 3
-          main_menu
-        end
-    when 5
-      main_menu
-    else
-      puts "Entry not recognized. Enter 1 to try again, or 2 to return to the main menu. "
-      modify_redirect = gets.chomp.to_i
-        if modify_redirect == 1
-          modify_existing_contact
-        elsif modify_redirect == 2
-          main_menu
-        else
-          puts "Entry not recognized. Returning to main menu."
-          main_menu
-        end
-    end
+    puts "What the ID that you want to modify?"
+    modify_id = gets.chomp.to_i
+    Rolodex.modify_selected_contact(modify_id)
+    main_menu    
   end
-
-
+    
   def delete_contact
-    puts "ready to delete a contact?"
-    Rolodex.delete_contact
+    puts "What is the ID of the record you wish to delete?"
+    delete_id = gets.chomp.to_i
+    Rolodex.delete_selected_contact(delete_id)
+    main_menu
   end
 
   def display_all_contacts
