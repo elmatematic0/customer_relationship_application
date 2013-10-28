@@ -1,6 +1,4 @@
 class Rolodex
-
-
 @rolodex_contact = []
 @id = 1000
 
@@ -15,12 +13,8 @@ class Rolodex
 	def self.add_contact(contact)
 		contact.id = @id
 		@rolodex_contact << contact
-		
 		@id += 1
-
 	end
-	
-
 end
 
 
